@@ -1,0 +1,17 @@
+{
+  "name": "task-manager",
+  "version": "1.0.0",
+  "description": "an powerfull task manager node.js application that allow user to manage tasks with the help of powerfull features provided by the app.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "task-manager"
+  ],
+  "author": "Kshitij Khot",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.7.0"
+  }
+}
