@@ -5,7 +5,7 @@ require('./db/mongoose.js') // it will automatically run the specified file, and
 
 
 const app = express(); 
-const port = process.env.PORT || 3000 
+const port = process.env.PORT  
 
 // routers :) 
 const userRouter = require('./routers/user') 
@@ -23,6 +23,31 @@ const taskRouter = require('./routers/task')
 //     res.status(503).send('We are under maintainance, try back soon :)') 
 // })
 
+// -------- multer testing ----------
+// const multer = require('multer')
+
+// const upload = multer({
+//     dest : 'images', 
+//     limits : {
+//         fileSize : 1*1024*1024          // 1 MB 
+//     }, 
+//     fileFilter(req, file, cb) {
+//         if(!file.originalname.match(/\.(doc|docx|pdf)$/)) {
+//             return cb(new Error('only doc,docx,pdf are allowed :) '))
+//         }
+
+//         cb(undefined, true)
+//     }
+// })
+
+
+// app.post('/upload', upload.single('upload') ,(req,res) => {
+//     res.send() 
+// }, (error, req, res, next) => {
+//     res.send({error : error.message})
+// })
+
+// --------------------------------------------
 app.use(express.json())
 
 // register router with app 
@@ -36,19 +61,3 @@ app.listen(port, () => {
 })
 
 
-// const Task = require('./models/task')
-// const User = require('./models/user')
-
-// const main = async () => {
-//     // const task = await Task.findById('62c549816b09098cc6fee399')
-//     // await task.populate(['owner'])
-
-//     // console.log(task.owner)
-
-//     const user = await User.findById('62c5466c6e161ec77d85f7c9')
-//     await user.populate('tasks')
-//     console.log(user.tasks) 
-
-// }
-
-// main()

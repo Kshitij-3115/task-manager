@@ -48,7 +48,12 @@ const userSchema = mongoose.Schema({
             type : String, 
             required : true
         }
-    }]
+    }], 
+    avatar : {
+        type : Buffer
+    }
+}, {
+    timestamps : true
 })
 
 // virtuals 
@@ -67,14 +72,15 @@ userSchema.methods.toJSON = function () {
 
     delete userObject.password 
     delete userObject.tokens 
-
+    delete userObject.avatar
+    
     return userObject 
 }
 
 // -> generate token for the user and store it to database 
 userSchema.methods.generateAuthToken = async function () {
     const user = this 
-    const token = jwt.sign({_id : user._id.toString()}, 'thisismynewcourse', {expiresIn : '1 day'}) 
+    const token = jwt.sign({_id : user._id.toString()}, process.env.JWT_SECRET, {expiresIn : '1 day'}) 
 
     // save it to database 
     user.tokens = user.tokens.concat({token}) 
